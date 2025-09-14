@@ -1,0 +1,798 @@
+/* ========== Fonts (включи го в началото на base.css) ========== */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Quattrocento+Sans:wght@400;700&display=swap');
+
+/* ========== Variables & base typography ========== */
+:root {
+    --primary-blue: #0066cc;
+    --hover-blue: #0088ff;
+    --light-blue: #e6f2ff;
+    --dark-bg: #2c3e50;
+    --light-bg: #ffffff;
+    --light-gray: #f7f9fc;
+    --text-dark: #333333;
+    --header-height: 80px;
+    --max-width: 1200px;
+}
+
+* { box-sizing: border-box; }
+
+
+body {
+    font-family: 'Quattrocento Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    line-height: 1.4;
+    color: var(--text-dark);
+    background-color: var(--light-bg);
+    /* padding-top заради фиксирания header */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    color: var(--text-dark);
+}
+
+
+p {
+    font-size: 1.125rem; /* ~18px */
+    line-height: 1.8;
+    margin: 0 0 1.25rem 0;
+    color: var(--text-dark);
+}
+
+
+.header {
+    background-color: var(--light-bg);
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 2rem 0;
+    display: grid;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+/* бургер бутон */
+.burger {
+  display: none; /* скрито на desktop */
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.burger span {
+  width: 25px;
+  height: 3px;
+  background: #333;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.burger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.burger.open span:nth-child(2) {
+    opacity: 0;
+}
+.burger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+
+.logo-text {
+    font-family: 'Oswald', sans-serif;
+    color: var(--primary-blue);
+    font-size: 2rem;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 2rem;
+    grid-column: 1;
+}
+
+.nav-link {
+    position:relative;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    color: var(--text-dark);
+    text-decoration: none;
+    font-family: 'Oswald', sans-serif;
+    transition: color 0.3s ease;
+}
+
+
+/* общ стил за линиите */
+.nav-link span {
+    position: absolute;
+    background: var(--primary-blue);
+    transition: all 0.4s ease;
+    pointer-events: none;
+}
+
+/* top line */
+.nav-link span:nth-child(1) {
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+}
+
+/* right line */
+.nav-link span:nth-child(2) {
+    top: 0;
+    right: 0;
+    height: 0;
+    width: 2px;
+}
+
+/* bottom line */
+.nav-link span:nth-child(3) {
+    bottom: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+}
+
+/* left line */
+.nav-link span:nth-child(4) {
+    bottom: 0;
+    left: 0;
+    height: 0;
+    width: 2px;
+}
+
+/* hover animations */
+.nav-link:hover span:nth-child(1) {
+    width: 100%;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover span:nth-child(2) {
+    height: 100%;
+    transition: height 0.3s ease 0.17s;
+}
+
+.nav-link:hover span:nth-child(3) {
+    width: 100%;
+    transition: width 0.3s ease 0.36s;
+}
+
+.nav-link:hover span:nth-child(4) {
+    height: 100%;
+    transition: height 0.3s ease 0.56s;
+}
+
+/* текстът също сменя цвят */
+.nav-link:hover {
+    color: var(--primary-blue);
+}
+
+/* промяна на цвета на текста */
+.nav-link:hover {
+    color: var(--primary-blue);
+}
+
+.nav-container {
+    grid-column: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.nav-link:hover {
+    color: var(--hover-blue);
+}
+
+.nav-link.active span {
+  transform: scaleX(1) scaleY(1); /* рамките да са напълно разтворени */
+  opacity: 1;
+}
+
+.nav-link.active span {
+    opacity: 1 !important; /* задължително, за да override-не hover transition */
+}
+
+.nav-link.active {
+    color: #1e88e5;
+    font-weight: bold;
+}
+.nav-link span {
+    pointer-events: none; /* много важно, за да може click да работи */
+}
+
+
+
+
+
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* тъмен overlay */
+    url(/css/images/closeup-support-hands.jpg) no-repeat center center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  padding: 120px 20px;
+}
+
+
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 238, 238, 0.45); /* или лек градиент */
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  color:var(--light-gray) /* текстът е над overlay */
+}
+
+.hero-content h1 {
+    color: var(--light-gray);
+    text-align: left;
+    margin-bottom: 1.5rem;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    
+}
+
+
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+
+
+
+
+/* Intro Section */
+
+.intro {
+    padding: 4rem 0;
+    background-color: white;
+    overflow: hidden;
+}
+
+.intro-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+    align-items: center;
+}
+
+.intro-text {
+    transform: translateX(-100%);
+    opacity: 0;
+    animation: slideInLeft 1s forwards;
+
+}
+
+.intro h1 {
+    font-size: 2.5rem;
+    color: var(--text-dark);
+    transform: translateX(-100%);
+    opacity: 0;
+    animation: slideInLeft 1s forwards;
+}
+
+.intro-text h2 {
+    font-size: 2.2rem;
+    color: var(--primary-blue);
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+
+.intro p {
+    color: var(--text-dark);
+    transform: translateX(100%);
+    opacity: 0;
+    animation: slideInRight 1s forwards;
+    animation-delay: 0.3s;
+}
+
+
+.intro-image {
+    transform: translateX(100%);
+    opacity: 0;
+    animation: slideInRight 1s forwards;
+    animation-delay: 0.3s;
+}
+
+.intro-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+
+@keyframes slideInLeft {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+
+
+/* Services Section */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width:1200px;
+    margin:0 auto;
+    
+}
+
+.service-image {
+    width: 100%;
+    height: 350px;  /* височината се коригира пропорционално */
+    object-fit: cover/cover;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: 1rem;
+}
+
+.service-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+   
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    height:500px;
+}
+
+.service-item h3 {
+    margin: 1rem 0;
+}
+
+.service-item p {
+    padding: 0 1.5rem;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: #E6F2FF;
+}
+
+.service-item h3 {
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+}
+
+.service-item p {
+    color: var(--text-dark);
+    
+}
+
+.services {
+    background-color: var(--light-gray);
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.services h2 {
+    margin-bottom: 3rem;
+}
+
+
+
+
+
+
+
+
+/* How to Hire Section */
+.how-to-hire {
+    background-color: var(--light-bg);
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.how-to-hire h2 {
+    margin-bottom: 3rem;
+}
+
+.step-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin: 0 auto 1rem;
+}
+
+
+/* Duties section */
+.duties {
+    padding: 5rem 0;
+    background-color: var(--light-bg);
+}
+
+.duties h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.features-grid,
+.steps-grid,
+.duties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+}
+
+.duty-card {
+    background:white;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    height: auto; /* Remove fixed height if any */
+}
+
+
+
+
+
+
+.duty-card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+
+
+.duty-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.duty-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.duty-card h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-blue);
+}
+
+/* Remove the height:0 and overflow:hidden */
+.duty-details {
+    margin-top: 1rem;
+    opacity: 1;
+    visibility: visible;
+}
+
+.duty-card:hover .duty-details {
+    height: auto;
+    margin-top: 1rem;
+}
+
+.duty-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.duty-details li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.duty-details li:last-child {
+    border-bottom: none;
+}
+
+
+
+
+/* Why Choose Us Section */
+.why-choose-us {
+    background-color: var(--light-bg);
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.why-choose-us h2 {
+    margin-bottom: 3rem;
+}
+
+ 
+
+.feature-item {
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-item i {
+    font-size: 2.5rem;
+    color: var(--primary-blue);
+    margin-bottom: 1.5rem;
+}
+
+.feature-item h3 {
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.feature-item p {
+    color: var(--text-dark);
+    
+}
+
+
+
+
+/* Testimonials Section */
+.testimonials {
+    background-color: var(--light-gray);
+    padding: 4rem 2rem;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.testimonial-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-card p {
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.testimonial-card cite {
+    color: var(--primary-blue);
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+/* CTA Section */
+.cta-section {
+    display: flex;
+    gap: 3rem;
+  background: var(); /* син градиент */
+  color: var(--text-dark);
+  text-align: center;
+  padding: 60px 30px;
+  border-radius: 12px 12px 0 0; /* закръглени ръбове към футъра */
+}
+
+.cta-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #eef5fb;
+    padding:20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+
+.cta-section h2 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.cta-section .working-hours {
+  font-family: 'Quattrocento Sans', sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cta-button {
+  background: white;
+  color: #1e88e5;
+  padding: 12px 25px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 0.5px solid black;
+  transition: all 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+  background: transparent;
+  color: var(--primary-blue);
+  box-shadow: 0 0 0 2px var(--primary-blue);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cta-button.primary {
+    background: var(--primary-blue);
+}
+
+
+
+
+
+
+/* Add Intersection Observer support */
+.slide-hidden {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: all 1s;
+}
+
+.slide-show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer section */
+.footer {
+    background-color: var(--dark-bg);
+    color: white;
+    padding: 4rem 0 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    
+}
+
+.footer-section h4 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-section a {
+    color: #ffffff90;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ffffff30;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}

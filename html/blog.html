@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блог | Болногледачи.бг</title>
+    <link rel="stylesheet" href="/css/base.css">
+</head>
+<body>
+    <header class="header">
+        <a href="home.html" class="logo-text">Болногледачи.бг</a> <!--Създаване на фрагмент , за да избегнем повтарянето на код-->
+        <nav class="nav-container">
+            <a href="home.html" class="nav-link">Начало</a>
+            <a href="about_us.html" class="nav-link">За нас</a>
+            <a href="caretaker_recruitment.html" class="nav-link">Станете част от нас</a>
+            <a href="blog.html" class="nav-link">Блог</a>
+            <a href="contact_form.html" class="nav-link">Контакти</a>
+        </nav>
+    </header>
+
+    <main style="margin-top: 80px; padding: 20px;">
+        <h1>Caregiving Insights & Resources</h1>
+        
+        <section class="blog-intro">
+            <p>Explore our collection of articles, tips, and expert advice to help you provide the best care for your loved ones.</p>
+        </section>
+
+        <section class="blog-posts">
+            <article class="blog-post">
+                <h2>Understanding Dementia Care: A Guide for Family Caregivers</h2>
+                <p class="date">September 1, 2025</p>
+                <p>Learn practical strategies and compassionate approaches for supporting loved ones with dementia...</p>
+                <button class="cta-button">Read More</button>
+            </article>
+
+            <article class="blog-post">
+                <h2>Self-Care Tips for Family Caregivers</h2>
+                <p class="date">August 25, 2025</p>
+                <p>Discover essential ways to maintain your own well-being while caring for others...</p>
+                <button class="cta-button">Read More</button>
+            </article>
+
+            <article class="blog-post">
+                <h2>Creating a Safe Home Environment for Seniors</h2>
+                <p class="date">August 18, 2025</p>
+                <p>Expert advice on home modifications and safety measures for elderly care...</p>
+                <button class="cta-button">Read More</button>
+            </article>
+        </section>
+
+        <section class="subscribe">
+            <h2>Stay Updated</h2>
+            <p>Subscribe to our newsletter for the latest caregiving tips and resources.</p>
+            <button class="cta-button">Subscribe Now</button>
+        </section>
+    </main>
+</body>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const currentPath = window.location.pathname.split("/").pop();
+
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath) {
+            link.classList.add('active'); // рамките остават видими
+        }
+    });
+});
+
+</script>
+</html>
