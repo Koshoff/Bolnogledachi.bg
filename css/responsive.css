@@ -125,6 +125,11 @@
     padding: 0 1rem;
   }
 
+  .intro-content h1 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+            }
+
   .intro-text {
     text-align: left;
   }
@@ -141,11 +146,17 @@
 
   .intro-image img {
     width: 100%;
-    max-width: 400px;
+    
     margin: 0 auto; /* центриране на снимката */
     border-radius: 10px;
   }
 }
+
+@media(max-width: 480px) {
+            .intro-content h1 {
+                font-size: 1.5rem;
+            }
+        }
 
 
 /* Services секция */
@@ -160,9 +171,9 @@
   }
 
   .service-grid {
-    display: flex;
-    flex-direction: column; /* подреждаме елементите един под друг */
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr; /* една колона */
+    gap: 1.5rem; /* по-малко разстояние */
   }
 
   .service-item {
@@ -173,7 +184,7 @@
 
   .service-image {
     width: 100%;
-    height: 200px; /* по-малка височина за мобилно */
+    height: 180px; /* по-малка височина за мобилно */
     object-fit: cover;
     border-radius: 8px;
   }
@@ -190,13 +201,45 @@
 }
 
 
+/* Tablet (768px – 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .service-grid {
+    max-width:900px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center; /* центрира всички елементи */
+  }
+
+  .service-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9; /* снимката запазва пропорции */
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .services h2 {
+    font-size: 2.3rem;
+  }
+
+  .steps-grid {
+    max-width:900px;
+  }
+}
+
+
+
+
+
 /* Duties секция */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .duties {
     padding: 3rem 1rem;
   }
 
-  .duties h2 {
+  .duties h2,
+  .how-to-hire h2 {
     font-size: 1.8rem;
     margin-bottom: 2rem;
     line-height: 1.3;
@@ -205,6 +248,7 @@
   .features-grid,
   .steps-grid,
   .duties-grid {
+    max-width:900px;
     display: flex;
     flex-direction: column; /* подреждаме картите една под друга */
     gap: 1.5rem;
@@ -237,14 +281,17 @@
   .duty-details li {
     padding: 0.4rem 0;
   }
+  .duty-details {
+    text-align:center;
+  }
 }
 
 
 
-@media (max-width: 768px) {
+@media (max-width: 768px ) {
   .cta-section {
     flex-direction: column; /* подреждаме съдържанието вертикално */
-    align-items: center;
+    align-items: stretch;
     padding: 40px 20px;
     text-align: center;
   }
@@ -308,6 +355,77 @@
 
   .form-submit button {
     max-width: 200px;
+  }
+
+  .why-choose-us h2 {
+    font-size:1.8rem;
+  }
+}
+
+
+
+
+/* Tablet (до 768px) */
+@media (max-width: 768px) {
+  .content-wrapper {
+    padding: 0;
+  }
+
+  .about-hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .section-title {
+    font-size:1.5rem;
+    text-align:center;
+  }
+
+
+  .about-grid {
+    display:flex;
+    flex-direction:column;
+    text-align:left; /* една колона */
+    gap: 2rem;
+    padding: 2rem 1rem;
+  }
+
+  .about-text {
+    order: 1; /* винаги първи */
+    text-align: left;
+    padding: 0 1rem;
+  }
+
+  .about-image {
+    order: 2; /* винаги втори */
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* махаме fade ефекта на малък екран, за да не пречи */
+  .about-image::after {
+    display: none;
+  }
+}
+
+/* Mobile (до 425px) */
+@media (max-width: 425px) {
+  .about-grid {
+    gap: 1.5rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .about-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 0 0.5rem;
+  }
+
+  .about-image {
+    max-width: 100%;
+  }
+
+  .about-image img {
+    border-radius: 6px;
   }
 }
 

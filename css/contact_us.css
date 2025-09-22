@@ -96,6 +96,7 @@
 .contact-info {
   flex: 1;
   background: #eef5fb;
+  color:var(--primary-blue);
   padding: 25px;
   border-radius: 10px;
   line-height: 1.6;

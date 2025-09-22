@@ -49,7 +49,7 @@
 /* Формата е 2 колони вътре */
 .contact-form {
   display: flex;
-  flex-wrap:wrap;
+  flex-direction: column;
   gap: 20px;
   flex: 2;
   background: #eef5fb;
@@ -58,12 +58,22 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
+.form-container {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 2rem;
+}
+
 .form-left, 
 .form-right {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+.form-right textarea {
+  min-height: 100%;
 }
 
 /* Полета */
@@ -89,7 +99,7 @@
 .form-submit {
   margin-top: 10px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
 }
 
 .form-submit button {
@@ -162,15 +172,19 @@
   }
 
   .form-submit {
+    gap: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items:center;
   }
 
   
 
   .contact-info {
     text-align: center;
-    order: 2; /* инфото отива след формата */
+    order: 2;
+     /* инфото отива след формата */
   }
 
   .contact-info h2 {
@@ -270,6 +284,7 @@
   
   <!-- Contact Form -->
   <form class="contact-form">
+    <div class="form-container">
       <div class="form-left">
           <input type="text" name="name" placeholder="Име и фамилия (задължително)" required>
           <input type="email" name="email" placeholder="E-mail (задължително)" required>
@@ -284,12 +299,16 @@
 
       <div class="form-right">
           <textarea name="message" rows="8" placeholder="Вашето съобщение (задължително)" required></textarea>
-          <div class="form-submit">
-              <button type="submit">Изпрати</button>
-          </div>
+          
       </div>
-
-      <a href="home.html" class="logo-text">Болногледачи.бг</a>
+    </div>
+      
+    <div class="form-submit">
+       <a href="home.html" class="logo-text">Болногледачи.бг</a>
+            <button type="submit">Изпрати</button>
+            
+    </div>
+      
   </form>
 
   <!-- Contact Info -->
