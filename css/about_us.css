@@ -15,7 +15,7 @@
     font-size: 3.625rem;
     text-align: left;
     margin: 2rem 0;
-    color: var(--primary-blue);
+    color: var(--text-dark);
     
 }
 
@@ -133,7 +133,7 @@
 }
 
 .mission {
-    background: linear-gradient(180deg, var(--light-bg) 0%, white 100%);
+    background: var(--light-gray);
     padding: 6rem 0;
 }
 
@@ -174,7 +174,7 @@
 
 .why-us {
     padding: 6rem 0;
-    background-color: white;
+    background-color: var(--light-gray);
 }
 
 .why-us h2 {
