@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Свържете се с нас | Болногледачи.бг</title>
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/contact_form.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-</head>
+  {% extends "fragments/base.html" %}
+{% load static %}
+{% block title %}Контактна форма | Болногледачи.бг{% endblock %}
+
+{% block content %}
+<h2>Свържете се с нас</h2>
 
     <style>
        .hero-contact {
@@ -283,33 +276,54 @@
   <div class="contact-wrapper">
   
   <!-- Contact Form -->
-  <form class="contact-form">
+
+
+{# Показваме съобщения (успех/грешка) #}
+{% if messages %}
+  {% for m in messages %}
+    <div class="message {{ m.tags }}">{{ m }}</div>
+  {% endfor %}
+{% endif %}
+
+<form method="post" action="{% url 'contact_form' %}" class="contact-form">
+    {% csrf_token %}
+    {{ form.honeypot }} {# скрито honeypot поле #}
+
     <div class="form-container">
       <div class="form-left">
-          <input type="text" name="name" placeholder="Име и фамилия (задължително)" required>
-          <input type="email" name="email" placeholder="E-mail (задължително)" required>
-          <input type="tel" name="phone" placeholder="Телефон (задължително)" required>
+          {{ form.name.errors }}
+          {{ form.name }}
 
-          <select name="service">
-            <option>Болногледач за дома</option>
-            <option>Болногледач за болница</option>
-            <option>Болногледач 24/7</option>
-          </select>
+          {{ form.email.errors }}
+          {{ form.email }}
+
+          {{ form.phone.errors }}
+          {{ form.phone }}
+
+          {{ form.service.errors }}
+          {{ form.service }}
       </div>
 
       <div class="form-right">
-          <textarea name="message" rows="8" placeholder="Вашето съобщение (задължително)" required></textarea>
-          
+          {{ form.message.errors }}
+          {{ form.message }}
       </div>
     </div>
-      
+
+    {# reCAPTCHA поле (ако го ползваш) #}
+    {% if form.recaptcha %}
+      <div class="recaptcha">
+        {{ form.recaptcha.errors }}
+        {{ form.recaptcha }}
+      </div>
+    {% endif %}
+
     <div class="form-submit">
-       <a href="home.html" class="logo-text">Болногледачи.бг</a>
-            <button type="submit">Изпрати</button>
-            
+        <a href="{% url 'home' %}" class="logo-text">Болногледачи.бг</a>
+        <button type="submit">Изпрати</button>
     </div>
-      
-  </form>
+</form>
+
 
   <!-- Contact Info -->
   <div class="contact-info">
@@ -331,52 +345,7 @@
   </div>
 
   
-    </main>
-    <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h4>За Нас</h4>
-            <ul>
-                <li><a href="about_us.html">Нашата История</a></li>
-                <li><a href="about_us.html#mission">Мисия и Ценности</a></li>
-                <li><a href="blog.html">Блог</a></li>
-            </ul>
-        </div>
-        
-        <div class="footer-section">
-            <h4>Услуги</h4>
-            <ul>
-                <li><a href="#services">Лична Грижа</a></li>
-                <li><a href="#services">Придружаване</a></li>
-                <li><a href="#services">Специализирана Грижа</a></li>
-            </ul>
-        </div>
-        
-        <div class="footer-section">
-            <h4>Контакти</h4>
-            <ul>
-                <li>Тел: +359 888 123 456</li>
-                <li>Email: info@bolnogledachi.bg</li>
-                <li>София, България</li>
-            </ul>
-        </div>
-        
-        <div class="footer-section">
-            <h4>Последвайте ни</h4>
-            <div class="social-links">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="footer-bottom">
-        <p>&copy; 2025 Болногледачи.бг. Всички права запазени.</p>
-    </div>
-</footer>
-</body>
+{% endblock %}
 
 <script>
 console.log("My script loaded"); // виж в конзолата

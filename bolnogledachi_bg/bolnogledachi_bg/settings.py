@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    'bolnogledachi_bg.bolnogledachi',
+    # 'ratelimit',
+    # 'captcha', 
+    
+    'bolnogledachi_bg.core',
 ]
 
 MIDDLEWARE = [
