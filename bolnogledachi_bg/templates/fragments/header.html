@@ -1,0 +1,34 @@
+{% load static %} 
+
+<header class="header">
+        <a href="home.html" class="logo-text">Болногледачи.бг</a> <!--Създаване на фрагмент , за да избегнем повтарянето на код-->
+
+        <button class="burger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+        
+        </button>
+        <nav class="nav-container">
+            <a href="{% url 'home' %}" class="nav-link">
+                <span></span><span></span><span></span><span></span>
+                Начало
+            </a>
+            <a href="{% url 'about_us' %}" class="nav-link">
+                <span></span><span></span><span></span><span></span>
+                За нас 
+            </a>
+            {% comment %} <a href="#" class="nav-link">
+                <span></span><span></span><span></span><span></span>
+                Станете част от нас
+            </a>
+            <a href="#" class="nav-link">
+                <span></span><span></span><span></span><span></span>
+                Блог
+            </a> {% endcomment %}
+            <a href="{% url 'contact_form' %}" class="nav-link">
+                <span></span><span></span><span></span><span></span>
+                Контакти
+            </a>
+        </nav>
+</header>
