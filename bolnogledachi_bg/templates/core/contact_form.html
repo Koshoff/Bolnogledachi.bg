@@ -14,7 +14,7 @@
                 rgba(0, 0, 0, 0.4), 
                 rgba(0, 0, 0, 0.2)
               ), 
-              url('/css/images/caregiver.jpg') no-repeat center center/cover;
+              url("{% static 'css/images/caregiver.jpg' %}") no-repeat center center/cover;
     display: flex;
     align-items: flex-end;   /* текстът долу */
     justify-content: flex-start; /* вляво */
@@ -271,9 +271,13 @@ button:hover {
 </style>
 
 <!-- Hero Section -->
+{% load static %}
+
 <section class="hero-contact">
     <h1>Контакти</h1>
 </section>
+
+
 
 <!-- Contact Form + Info -->
 <div class="contact-wrapper">

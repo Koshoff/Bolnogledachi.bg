@@ -3,16 +3,30 @@
 {% block title %}Начало | Болногледачи.бг{% endblock %}
 
 {% block content %}
-
+{% load static %}
 <<<<<<< HEAD:html/home.html
         
-    
+    <style>
+        .hero {
+  display: flex;
+  justify-content: flex-start;
+  align-items:center;
+  position: relative;
+  padding-left: 3rem;
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* тъмен overlay */
+    url("{% static '/css/images/closeup-support-hands.jpg' %}") no-repeat center center;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  min-height: 70vh;
+}
     </style>
 <body>
     <header class="header">
         <a href="home.html" class="logo-text">Bolnogledachi.bg</a> <!--Създаване на фрагмент , за да избегнем повтарянето на код-->
 =======
-{% load static %}
+
 >>>>>>> 509a1a1a7bfc00e9827407e13e2f730da97adaca:bolnogledachi_bg/templates/core/home.html
 
 <section class="hero">

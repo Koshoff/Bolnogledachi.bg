@@ -1,17 +1,4 @@
-.hero-contact {
-  min-height: 40vh; /* по-малко пространство */
-  background: linear-gradient(
-              to right, 
-              rgba(0, 0, 0, 0.4), 
-              rgba(0, 0, 0, 0.2)
-            ), 
-            url('/css/images/caregiver.jpg') no-repeat center center/cover;
-  display: flex;
-  align-items: flex-end;   /* текстът долу */
-  justify-content: flex-start; /* вляво */
-  padding: 40px; /* отстояние за текста */
-  color: white;
-}
+
 
   .hero-contact h1 {
   font-size: 3rem;
