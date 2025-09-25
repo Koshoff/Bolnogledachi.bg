@@ -1,5 +1,4 @@
-from django.shortcuts import render
-
+# core/views.py
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.core.mail import send_mail
@@ -10,20 +9,10 @@ from django.contrib import messages
 
 
 def home(request):
-    return render(
-        request,
-        'core/home.html',
-        )
-    
-    
-# def contact_form(request):
-#     return render(
-#         request,
-#         'core/contact_form.html',
-#         )
-    
-    
-# ограничение: 5 заявки на минута на IP (адаптирай)
+    return render(request, 'core/home.html')
+
+
+# ограничение: 5 заявки на минута на IP
 # @ratelimit(key='ip', rate='5/m', block=True)
 def contact_view(request):
     """
@@ -37,11 +26,12 @@ def contact_view(request):
             email = form.cleaned_data['email']
             phone = form.cleaned_data['phone']
             service = form.cleaned_data['service']
-            # sanitize message -> позволяваме само текст, без html
             raw_message = form.cleaned_data['message']
+
+            # sanitize message -> позволяваме само текст
             message_clean = bleach.clean(raw_message, tags=[], strip=True)
 
-            # Prepare email content (без чувствителни данни)
+            # prepare email
             subject = f"Нов контакт от {name} - {service}"
             body = (
                 f"Име: {name}\n"
@@ -59,25 +49,19 @@ def contact_view(request):
                     [settings.CONTACT_RECEIVER_EMAIL],
                     fail_silently=False,
                 )
-            except Exception as e:
-                # логни евентуално / покажи обща грешка
+            except Exception:
                 messages.error(request, "Възникна проблем при изпращането. Моля опитайте по-късно.")
-                # можеш да логнеш e за debugging
-                return render(request, 'core/contact_success.html', {'sent': False})
+                return render(request, 'core/contact_form.html', {'form': form, 'sent': False})
 
             messages.success(request, "Благодарим! Вашето съобщение е изпратено.")
-            return redirect('contact_form')  # или 'home' и т.н.
+            return redirect('contact_form')
         else:
-            # form невалиден
             messages.error(request, "Моля коригирайте грешките в формата.")
     else:
         form = ContactForm()
 
     return render(request, 'core/contact_form.html', {'form': form})
-    
+
 
 def about_us(request):
-    return render(
-        request,
-        'core/about_us.html',
-        )
+    return render(request, 'core/about_us.html')
