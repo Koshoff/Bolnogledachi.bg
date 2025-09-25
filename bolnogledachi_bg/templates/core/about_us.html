@@ -1,86 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>За нас | Болногледачи.бг</title>
-    <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="/css/about_us.css">
-    <link rel="stylesheet" href="/css/footer.css">
-    <link rel="stylesheet" href="/css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
+{% extends "fragments/base.html" %}
 
-<style>
-   
-</style>
-<body>
-    <header class="header">
-        <a href="home.html" class="logo-text">Болногледачи.бг</a> <!--Създаване на фрагмент , за да избегнем повтарянето на код-->
+{% block title %}За нас | Болногледачи.бг{% endblock %}
 
-        <button class="burger" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-        
-        </button>
-        <nav class="nav-container">
-            <a href="home.html" class="nav-link">
-                <span></span><span></span><span></span><span></span>
-                Начало
-            </a>
-            <a href="about_us.html" class="nav-link">
-                <span></span><span></span><span></span><span></span>
-                За нас 
-            </a>
-            <a href="caretaker_recruitment.html" class="nav-link">
-                <span></span><span></span><span></span><span></span>
-                Станете част от нас
-            </a>
-            <a href="blog.html" class="nav-link">
-                <span></span><span></span><span></span><span></span>
-                Блог
-            </a>
-            <a href="contact_form.html" class="nav-link">
-                <span></span><span></span><span></span><span></span>
-                Контакти
-            </a>
-        </nav>
-    </header>
+{% block content %}
 
-<main>
+{% load static %}
+
+    <!-- Hero Section -->
     <section class="about-hero">
         <h1>Правим избора ви на болногледач лесен</h1>
     </section>
 
+    <!-- About Us Section -->
     <section class="about-us">
-    <div class="content-wrapper">
-        <h2 class="section-title">За нас</h2>
-        
-        <!-- First paragraph - text right, image left -->
-        <div class="about-grid normal">
+        <div class="content-wrapper">
+            <h2 class="section-title">За нас</h2>
             
-            <div class="about-text">
-                <p>Bolnogledachi.bg сме екип от хора с над 15 години опит в сферата на социалните грижи. Освен като агенция за набиране на персонал – притежаваме богато минало като работници в бранша. Имаме опит и представа за всеки аспект от работата на един болногледач. Ние знаем какъв тип човек се изисква за да бъде добър в специалността и как да преценим дали той би бил подходящ за Вашите специфични нужди.</p>
-            </div>
-            <div class="about-image">
-                <img src="/css/images/caring_hands.jpg" alt="Екип от болногледачи">
-            </div>
-        </div>
-        
-        <!-- Second paragraph - text left, image right -->
-        <div class="about-grid reverse">
-            <div class="about-image">
-                <img src="/css/images/caring_hands.jpg" alt="Професионална грижа">
-            </div>
-            <div class="about-text reverse">
-                <p>Богатият ни опит и гледни точки ни помагат да разпознаем качествата и талантът на хората, както и процесът на подбор и работа да бъде благоприятен както за клиентите ни, така и за персонала, към който сме ангажирани с осигуряването на надеждна работна среда. Дълголетието ни в тази среда даде възможност да създадем кръг от талантливи и доказани работници, с които изградихме партньорства, построени върху сигурността и професионализма, които предлагаме на тях и нашите клиенти.</p>
+            <!-- First paragraph - text right, image left -->
+            <div class="about-grid normal">
+                <div class="about-text">
+                    <p>Bolnogledachi.bg сме екип от хора с над 15 години опит в сферата на социалните грижи. Освен като агенция за набиране на персонал – притежаваме богато минало като работници в бранша. Имаме опит и представа за всеки аспект от работата на един болногледач. Ние знаем какъв тип човек се изисква за да бъде добър в специалността и как да преценим дали той би бил подходящ за Вашите специфични нужди.</p>
+                </div>
+                <div class="about-image">
+                    <img src="{% static 'css/images/caring_hands.jpg' %}" alt="Екип от болногледачи">
+                </div>
             </div>
             
+            <!-- Second paragraph - text left, image right -->
+            <div class="about-grid reverse">
+                <div class="about-image">
+                    <img src="{% static 'css/images/caring_hands.jpg' %}" alt="Професионална грижа">
+                </div>
+                <div class="about-text reverse">
+                    <p>Богатият ни опит и гледни точки ни помагат да разпознаем качествата и талантът на хората, както и процесът на подбор и работа да бъде благоприятен както за клиентите ни, така и за персонала, към който сме ангажирани с осигуряването на надеждна работна среда. Дълголетието ни в тази среда даде възможност да създадем кръг от талантливи и доказани работници, с които изградихме партньорства, построени върху сигурността и професионализма, които предлагаме на тях и нашите клиенти.</p>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
+    <!-- Mission Section -->
     <section class="mission">
         <div class="content-wrapper">
             <div class="mission-content">
@@ -90,65 +48,22 @@
         </div>
     </section>
 
+    <!-- Why Us Section -->
     <section class="why-us">
         <div class="content-wrapper">
             <h2>Защо ние</h2>
             <div class="why-us-content">
                 <p>Наемането на правилния болногледач е деликатно и важно решение. То засяга не само здравето и комфорта на болния, но и емоционалното и финансово състояние на семейството. Ние гарантираме сигурността на инвестицията ви в това Вашият близък да попадне в ръцете на правилният човек – човек, който ще му осигури подкрепа, спокойствие и грижа.</p>
                 <p>При нас ще откриете бърз и лесен процес на откриването на подходящият болногледач. Спрямо вашите нужди и изисквания, ние ще ви предложим проверен и доказан кандидат, с който можете да проведете среща/интервю в посочено от Вас време и адрес. След провеждането на срещата, ако прецените, че кандидатът не отговаря на вашите очаквания, ние ще ви предложим алтернативен кандидат, без да се налага да заплащате допълнителни такси. Възможността за безплатна смяна на персонал важи и за срок от 1 месец след като болногледачът е постъпил на работа.</p>
-                <a href="/documents/sample-contract.pdf" class="contract-link">
+                <a href="{% static 'documents/sample-contract.pdf' %}" class="contract-link">
                     <i class="fas fa-file-pdf"></i>
                     Изтеглете примерен договор
                 </a>
             </div>
         </div>
     </section>
-</main>
 
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-section">
-            <h4>За Нас</h4>
-            <ul>
-                <li><a href="about_us.html">Нашата История</a></li>
-                <li><a href="about_us.html#mission">Мисия и Ценности</a></li>
-                <li><a href="blog.html">Блог</a></li>
-            </ul>
-        </div>
-        
-        <div class="footer-section">
-            <h4>Услуги</h4>
-            <ul>
-                <li><a href="#services">Лична Грижа</a></li>
-                <li><a href="#services">Придружаване</a></li>
-                <li><a href="#services">Специализирана Грижа</a></li>
-            </ul>
-        </div>
-        
-        <div class="footer-section">
-            <h4>Контакти</h4>
-            <ul>
-                <li>Тел: +359 888 123 456</li>
-                <li>Email: info@bolnogledachi.bg</li>
-                <li>София, България</li>
-            </ul>
-        </div>
-        
-        <div class="footer-section">
-            <h4>Последвайте ни</h4>
-            <div class="social-links">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="footer-bottom">
-        <p>&copy; 2025 Болногледачи.бг. Всички права запазени.</p>
-    </div>
-</footer>
-</body>
+{% endblock %}
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {

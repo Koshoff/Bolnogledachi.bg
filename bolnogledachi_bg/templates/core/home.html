@@ -3,6 +3,7 @@
 {% block title %}Начало | Болногледачи.бг{% endblock %}
 
 {% block content %}
+
 {% load static %}
 <section class="hero">
     <div class="hero-container">
@@ -14,7 +15,6 @@
         </div>
     </div>
 </section>
-
 
         <!--
         
@@ -230,20 +230,23 @@
             </form>
         </section>
 
-{% endblock %}
 
-{% block scripts %}
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('slide-show');
-        }
-    });
-});
+console.log("My script loaded"); // виж в конзолата
 
-document.querySelectorAll('.slide-hidden').forEach((el) => observer.observe(el));
+const navContainer = document.querySelector('.nav-container');
+
+navContainer.addEventListener('click', (e) => {
+    const clickedLink = e.target.closest('.nav-link');
+    if (!clickedLink) return;
+
+    const currentActive = navContainer.querySelector('.nav-link.active');
+    if (currentActive) currentActive.classList.remove('active');
+
+    clickedLink.classList.add('active');
+    console.log("Active added to:", clickedLink.textContent.trim());
+});
 </script>
 
 <script>
