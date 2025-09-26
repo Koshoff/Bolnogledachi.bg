@@ -742,7 +742,6 @@ p {
     color: white;
     text-decoration: none;
     border-radius: 8px;
-    font-weight: bold;
     transition: all 0.3s ease;
     border: 0.5px solid black;
 }
@@ -762,15 +761,16 @@ p {
   border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
-  border: 0.5px solid black;
-  transition: all 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
+    border: 0.5px solid black;
 }
 
 .cta-button:hover {
-  background: transparent;
-  color: var(--primary-blue);
-  transform: translateY(-2px);
-  box-shadow: 0 0 0 2px var(--primary-blue);
+  background-color: var(--primary-blue);
+    color: #fff;
+    border-color: var(--primary-blue);
+    transform: translateY(-2px); /* леко издигане при hover */
+    box-shadow: 0 0 0 2px var(--primary-blue);
 }
 
 
