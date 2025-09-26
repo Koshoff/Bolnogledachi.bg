@@ -734,6 +734,27 @@ p {
   flex-wrap: wrap;
 }
 
+.cta-buttons a {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius:6px;
+    background-color: var(--hover-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 0.5px solid black;
+}
+
+.cta-buttons a:hover {
+    background-color: var(--primary-blue);
+    color: #fff;
+    border-color: var(--primary-blue);
+    transform: translateY(-2px); /* леко издигане при hover */
+    box-shadow: 0 0 0 2px var(--primary-blue);
+}
+
 .cta-button {
   background: white;
   color: #1e88e5;
@@ -748,6 +769,7 @@ p {
 .cta-button:hover {
   background: transparent;
   color: var(--primary-blue);
+  transform: translateY(-2px);
   box-shadow: 0 0 0 2px var(--primary-blue);
 }
 
