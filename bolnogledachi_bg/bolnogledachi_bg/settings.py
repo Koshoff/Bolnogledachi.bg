@@ -57,24 +57,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bolnogledachi_bg.wsgi.application'
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bolnogledachi_db',
+        'USER': 'bolno_user_gledach',
+        'PASSWORD': 'boLn0_02',
+        'HOST': '127.0.0.1', 
+        'PORT': '5435',
     }
 }
-
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": "cat_shelter2",
-#         "USER": "postgres",
-#         "PASSWORD": "admin",
-#         "HOST": "127.0.0.1",
-#         "PORT": "5432",
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
