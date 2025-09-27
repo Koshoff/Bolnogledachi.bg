@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtualenv
+venv/
+
+# SQLite database
+db.sqlite3
+
+# Logs
+*.log
+
+# Django stuff:
+*.pot
+*.pyc
+*.mo
+
+# Media & static (ако се генерират автоматично)
+staticfiles/
+media/
+
+# IDE
+.vscode/
+.idea/
