@@ -16,6 +16,9 @@ DEBUG = config(
 )
 
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=lambda v: [s.strip() for s in v.split(",")])
+# и в .env:
+# ALLOWED_HOSTS=bolnogledachi.bg,www.bolnogledachi.bg
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -113,3 +116,20 @@ MEDIA_URL = '/media/'  # URL to access media files
 MEDIA_ROOT = BASE_DIR / 'media'  # Where media files are stored
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+if not DEBUG:
+    # Force HTTPS
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+    # Prevent clickjacking
+    X_FRAME_OPTIONS = "DENY"
+
+    # Prevent content type sniffing
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+
+    # HSTS (задължава браузърите да ползват HTTPS)
+    SECURE_HSTS_SECONDS = 31536000  # 1 година
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
