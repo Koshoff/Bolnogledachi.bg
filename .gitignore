@@ -25,3 +25,6 @@ media/
 # IDE
 .vscode/
 .idea/
+
+# .env files
+*.env
