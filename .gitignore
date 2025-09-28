@@ -28,3 +28,4 @@ media/
 
 # .env files
 *.env
+.env*
