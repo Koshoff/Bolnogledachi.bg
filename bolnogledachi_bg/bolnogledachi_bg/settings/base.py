@@ -97,3 +97,6 @@ MEDIA_URL = '/media/'  # URL to access media files
 MEDIA_ROOT = BASE_DIR / 'media'  # Where media files are stored
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AXES_FAILURE_LIMIT = 5  # колко неуспешни login опита да блокира
+AXES_COOLOFF_TIME = 1   # час(ове), колко време да е блокирано
