@@ -1,4 +1,5 @@
-# TODO: On Production Need To Config -> ALLOWED_HOSTS, STATIC_ROOT, MEDIA_ROOT
+# TODO: 
+#       contact form & email
 #       contact_success.html & 404.html & comming_soon.html
 #       <li><a href="about_us.html#mission">Мисия и Ценности</a></li> ????
 #       captcha
