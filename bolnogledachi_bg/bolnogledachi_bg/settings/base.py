@@ -13,6 +13,7 @@ DEBUG = config(
 )
 
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['bolnogledachi.bg', 'www.bolnogledachi.bg', '46.62.217.246']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -86,6 +87,8 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files configuration
+# BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # Where static files are collected
 STATICFILES_DIRS = (
