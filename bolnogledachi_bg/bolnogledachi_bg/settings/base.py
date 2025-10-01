@@ -89,8 +89,15 @@ USE_TZ = True
 # Static files configuration
 # BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+# STATIC_URL = '/static/'
+# STATIC_ROOT = BASE_DIR / 'staticfiles'  # Where static files are collected
+# STATICFILES_DIRS = (
+#     BASE_DIR / "static",
+# )
+
+# Static files configuration
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Where static files are collected
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = (
     BASE_DIR / "static",
 )
