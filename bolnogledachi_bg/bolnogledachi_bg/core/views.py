@@ -25,21 +25,35 @@ def contact_view(request):
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
             phone = form.cleaned_data['phone']
-            service = form.cleaned_data['service']
+            service_value = form.cleaned_data['service']
             raw_message = form.cleaned_data['message']
+
+            # взимаме текста (етикета) на избраната услуга
+            service_label = dict(form.fields['service'].choices).get(service_value, service_value)
 
             # sanitize message -> позволяваме само текст
             message_clean = bleach.clean(raw_message, tags=[], strip=True)
 
             # prepare email
-            subject = f"Нов контакт от {name} - {service}"
-            body = (
-                f"Име: {name}\n"
-                f"Email: {email}\n"
-                f"Телефон: {phone}\n"
-                f"Услуга: {service}\n\n"
-                f"Съобщение:\n{message_clean}"
-            )
+            subject = f"📩 Ново запитване от {name} ({service_label})"
+
+            body = f"""
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📞 НОВО ЗАПИТВАНЕ ОТ ФОРМАТА ЗА КОНТАКТ 
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+👤 Име:        {name}
+📧 Имейл:      {email}
+📱 Телефон:    {phone}
+💼 Услуга:     {service_label}
+
+💬 СЪОБЩЕНИЕ:
+{message_clean}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Изпратено автоматично от сайта: https://bolnogледachi.bg
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+"""
 
             try:
                 send_mail(
@@ -53,10 +67,10 @@ def contact_view(request):
                 messages.error(request, "Възникна проблем при изпращането. Моля опитайте по-късно.")
                 return render(request, 'core/contact_form.html', {'form': form, 'sent': False})
 
-            messages.success(request, "Благодарим! Вашето съобщение е изпратено.")
+            messages.success(request, "Благодарим! Вашето съобщение е изпратено успешно.")
             return redirect('contact_form')
         else:
-            messages.error(request, "Моля коригирайте грешките в формата.")
+            messages.error(request, "Моля, коригирайте грешките във формата.")
     else:
         form = ContactForm()
 
