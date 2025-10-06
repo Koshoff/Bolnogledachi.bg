@@ -304,30 +304,6 @@ button:hover {
         
     </div> {% endcomment %}
 
-    {% comment %} 2 <form method="post" action="{% url 'contact' %}" class="contact-form">
-      {% csrf_token %}
-      {{ form.non_field_errors }}
-      
-      <div>
-        {{ form.name.label_tag }}
-        {{ form.name }}
-        {{ form.name.errors }}
-      </div>
-
-      <div>
-        {{ form.email.label_tag }}
-        {{ form.email }}
-        {{ form.email.errors }}
-      </div>
-
-      <div>
-        {{ form.message.label_tag }}
-        {{ form.message }}
-        {{ form.message.errors }}
-      </div>
-
-      {{ form.honeypot }} {% endcomment %}
-
       <form method="post" action="{% url 'contact_form' %}" class="contact-form" novalidate>
       {% csrf_token %}
       {{ form.honeypot }}
@@ -372,32 +348,9 @@ button:hover {
 
     {% if success %}
       <p class="success-message">✅ Благодарим! Съобщението беше изпратено успешно.</p>
+    {% elif error %}
+      <p class="error-message">❌ Съжаляваме, възникна грешка при изпращането. Моля, опитайте отново по-късно.</p>
     {% endif %}
-
-    {% comment %} <form class="contact-form" method="post" action="{% url 'contact_form' %}">
-                {% csrf_token %}
-                 <div class="form-container">
-                    <div class="form-left">
-                        <input type="text" name="name" placeholder="Име и фамилия (задължително)" required>
-                        <input type="email" name="email" placeholder="E-mail (задължително)" required>
-                        <input type="tel" name="phone" placeholder="Телефон (задължително)" required>
-
-                        <select name="service">
-                            <option>Болногледач за дома</option>
-                            <option>Болногледач за болница</option>
-                            <option>Болногледач 24/7</option>
-                        </select>
-                    </div>
-
-                    <div class="form-right">
-                        <textarea name="message" rows="8" placeholder="Вашето съобщение (задължително)" required></textarea>
-                        <div class="form-submit">
-                            <button type="submit">Изпрати</button>
-                        </div>
-                    </div>
-                    <a href="home.html" class="logo-text">Bolnogledachi.bg</a>
-                    </div>
-            </form> {% endcomment %}
 
     <!-- Contact Info -->
     <div class="contact-info">
@@ -418,19 +371,18 @@ button:hover {
 </div>
 
 <style>
-/* запази текущите ти стилове или копирай по-горния CSS — това е само пример */
-.alert { padding: 10px; border-radius:6px; margin-bottom:10px; }
-.alert.success { background:#e6ffed; color:#1a7f37; }
-.alert.error { background:#ffe6e6; color:#a60303; }
-.field-error { color:#a60303; font-size:0.9rem; margin-top:6px; }
-.contact-wrapper { display:flex; gap:30px; max-width:1200px; margin:40px auto; padding:0 16px; }
-.contact-form { background:#eef5fb; padding:18px; border-radius:10px; }
-.form-container { display:flex; gap:20px; }
-.form-left, .form-right { flex:1; display:flex; flex-direction:column; gap:12px; }
-@media (max-width:768px) {
-  .contact-wrapper { flex-direction:column; }
-  .form-container { flex-direction:column; }
-}
+  .alert { padding: 10px; border-radius:6px; margin-bottom:10px; }
+  .alert.success { background:#e6ffed; color:#1a7f37; }
+  .alert.error { background:#ffe6e6; color:#a60303; }
+  .field-error { color:#a60303; font-size:0.9rem; margin-top:6px; }
+  .contact-wrapper { display:flex; gap:30px; max-width:1200px; margin:40px auto; padding:0 16px; }
+  .contact-form { background:#eef5fb; padding:18px; border-radius:10px; }
+  .form-container { display:flex; gap:20px; }
+  .form-left, .form-right { flex:1; display:flex; flex-direction:column; gap:12px; }
+  @media (max-width:768px) {
+    .contact-wrapper { flex-direction:column; }
+    .form-container { flex-direction:column; }
+  }
 </style>
 
 <script>
