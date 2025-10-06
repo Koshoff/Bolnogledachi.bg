@@ -30,8 +30,8 @@ class ContactForm(forms.Form):
     )
     service = forms.ChoiceField(
         choices=[
-            ('home', 'Болногледач за дома'),
-            ('hospital', 'Болногледач за болница'),
+            ('home', 'Болногледач по часово'),
+            ('hospital', 'Болногледач на пълен работен ден'),
             ('247', 'Болногледач 24/7'),
         ],
         required=True,

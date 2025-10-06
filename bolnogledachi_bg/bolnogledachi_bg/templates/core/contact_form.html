@@ -7,6 +7,11 @@
 {% block content %}
 
 <style>
+
+  label {
+  display: inline-block;
+   /* или 0, ако искаш плътно */
+  }
   .hero-contact {
     min-height: 40vh; /* по-малко пространство */
     background: linear-gradient(
@@ -14,7 +19,7 @@
                 rgba(0, 0, 0, 0.4), 
                 rgba(0, 0, 0, 0.2)
               ), 
-              url("{% static 'css/images/caregiver.jpg' %}") no-repeat center center/cover;
+              url("{% static 'css/contact_page_hero_compressed.webp' %}") no-repeat center center/cover;
     display: flex;
     align-items: flex-end;   /* текстът долу */
     justify-content: flex-start; /* вляво */
@@ -39,6 +44,50 @@
     align-items: flex-start;
     align-items: stretch;
   }
+
+
+  .thank-you-message {
+  text-align: center;
+  background: #eef5fb;
+  border-radius: 15px;
+  padding: 3rem 2rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.thank-you-message h2 {
+  color: var(--text-dark);
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.thank-you-message p {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+.thank-you-message.error h2 {
+  color: #b71c1c;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.fade-in {
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
 
   /* Формата е 2 колони вътре */
   .contact-form {
@@ -271,10 +320,12 @@ button:hover {
 
     <!-- Contact Form -->
     {% if messages %}
+    <div class="messages-container">
       {% for m in messages %}
         <div class="message {{ m.tags }}">{{ m }}</div>
       {% endfor %}
-    {% endif %}
+    </div>
+  {% endif %}
 
     {% comment %} 1 <form method="post" action="{% url 'contact_form' %}" class="contact-form">
     {% csrf_token %}
@@ -304,47 +355,38 @@ button:hover {
         
     </div> {% endcomment %}
 
-      <form method="post" action="{% url 'contact_form' %}" class="contact-form" novalidate>
+      <div id="contact-form-container">
+    <form id="contactForm" method="post" action="{% url 'contact_form' %}" class="contact-form" novalidate>
       {% csrf_token %}
       {{ form.honeypot }}
 
       <div class="form-container">
-        <div class="form-left" aria-hidden="false">
+        <div class="form-left">
           <label for="{{ form.name.id_for_label }}"><strong>Име и фамилия</strong></label>
           {{ form.name }}
-          {% if form.name.errors %}<div class="field-error">{{ form.name.errors }}</div>{% endif %}
 
           <label for="{{ form.email.id_for_label }}"><strong>E-mail</strong></label>
           {{ form.email }}
-          {% if form.email.errors %}<div class="field-error">{{ form.email.errors }}</div>{% endif %}
 
           <label for="{{ form.phone.id_for_label }}"><strong>Телефон</strong></label>
           {{ form.phone }}
-          {% if form.phone.errors %}<div class="field-error">{{ form.phone.errors }}</div>{% endif %}
 
           <label for="{{ form.service.id_for_label }}"><strong>Услуга</strong></label>
           {{ form.service }}
-          {% if form.service.errors %}<div class="field-error">{{ form.service.errors }}</div>{% endif %}
         </div>
 
         <div class="form-right">
           <label for="{{ form.message.id_for_label }}"><strong>Вашето Съобщение</strong></label>
           {{ form.message }}
-          {% if form.message.errors %}<div class="field-error">{{ form.message.errors }}</div>{% endif %}
         </div>
       </div>
 
-        {% if form.recaptcha %}
-          <div class="recaptcha">
-            {{ form.recaptcha.errors }}
-            {{ form.recaptcha }}
-          </div>
-        {% endif %}
-        <div class="form-submit">
-                  <a href="{% url 'home' %}" class="logo-text">Bolnogledachi.bg</a>
-                    <button type="submit"></strong>Изпрати</strong></button>
-                </div>
+      <div class="form-submit">
+        <a href="{% url 'home' %}" class="logo-text">Bolnogledachi.bg</a>
+        <button type="submit"><strong>Изпрати</strong></button>
+      </div>
     </form>
+  </div>
 
     {% if success %}
       <p class="success-message">✅ Благодарим! Съобщението беше изпратено успешно.</p>
@@ -375,10 +417,7 @@ button:hover {
   .alert.success { background:#e6ffed; color:#1a7f37; }
   .alert.error { background:#ffe6e6; color:#a60303; }
   .field-error { color:#a60303; font-size:0.9rem; margin-top:6px; }
-  .contact-wrapper { display:flex; gap:30px; max-width:1200px; margin:40px auto; padding:0 16px; }
-  .contact-form { background:#eef5fb; padding:18px; border-radius:10px; }
-  .form-container { display:flex; gap:20px; }
-  .form-left, .form-right { flex:1; display:flex; flex-direction:column; gap:12px; }
+
   @media (max-width:768px) {
     .contact-wrapper { flex-direction:column; }
     .form-container { flex-direction:column; }
@@ -426,5 +465,69 @@ document.addEventListener('DOMContentLoaded', () => {
         burger.classList.toggle("open");
     });
 </script>
+
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+
+  const form = e.target;
+
+  if (!form.checkValidity()) {
+    form.reportValidity(); // визуално показва грешките
+    return;
+  }
+
+  const formData = new FormData(form);
+  const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  const container = document.getElementById('contact-form-container');
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      headers: { 'X-CSRFToken': csrfToken },
+      body: formData
+    });
+
+    if (response.ok) {
+      container.classList.add('fade-out');
+      setTimeout(() => {
+        container.innerHTML = `
+          <div class="thank-you-message">
+            <h2>Благодарим Ви, че се свързахте с нас!</h2>
+            <p>Наш представител ще се свърже с Вас възможно най-скоро.</p>
+          </div>
+        `;
+        container.classList.remove('fade-out');
+        container.classList.add('fade-in');
+      }, 600);
+    } else {
+      showError(container);
+    }
+
+  } catch (err) {
+    console.error(err);
+    showError(container);
+  }
+});
+
+function showError(container) {
+  container.classList.add('fade-out');
+  setTimeout(() => {
+    container.innerHTML = `
+      <div class="thank-you-message error">
+        <h2>Възникна грешка!</h2>
+        <p>Моля, опитайте отново по-късно.</p>
+      </div>
+    `;
+    container.classList.remove('fade-out');
+    container.classList.add('fade-in');
+  }, 600);
+}
+</script>
+
+
+
 
 {% endblock %}
