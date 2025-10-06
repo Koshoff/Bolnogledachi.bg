@@ -118,6 +118,16 @@ EMAIL_PORT = 587             # TLS порт
 EMAIL_USE_TLS = True         # използвай TLS (STARTTLS)
 EMAIL_USE_SSL = False        # не ползвай SSL
 EMAIL_HOST_USER = 'contact@bolnogledachi.bg'
-EMAIL_HOST_PASSWORD = 'Yotovconsulting9761bolnogledachi'  # паролата
+EMAIL_HOST_PASSWORD = 'Yotovconsulting9761bolnogledachi' 
 DEFAULT_FROM_EMAIL = 'Болногледачи.бг <contact@bolnogledachi.bg>'
 CONTACT_RECEIVER_EMAIL = 'contact@bolnogledachi.bg'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS = True         # използвай TLS (STARTTLS)
+EMAIL_USE_SSL = False        # не ползвай SSL
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+CONTACT_RECEIVER_EMAIL = config('CONTACT_RECEIVER_EMAIL')
