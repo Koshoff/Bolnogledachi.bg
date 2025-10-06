@@ -276,7 +276,7 @@ button:hover {
       {% endfor %}
     {% endif %}
 
-     <form method="post" action="{% url 'contact_form' %}" class="contact-form">
+    {% comment %} 1 <form method="post" action="{% url 'contact_form' %}" class="contact-form">
     {% csrf_token %}
     {{ form.honeypot }}
 
@@ -302,19 +302,77 @@ button:hover {
             
         </div>
         
-    </div>
+    </div> {% endcomment %}
 
-    {% if form.recaptcha %}
-      <div class="recaptcha">
-        {{ form.recaptcha.errors }}
-        {{ form.recaptcha }}
+    {% comment %} 2 <form method="post" action="{% url 'contact' %}" class="contact-form">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      
+      <div>
+        {{ form.name.label_tag }}
+        {{ form.name }}
+        {{ form.name.errors }}
       </div>
+
+      <div>
+        {{ form.email.label_tag }}
+        {{ form.email }}
+        {{ form.email.errors }}
+      </div>
+
+      <div>
+        {{ form.message.label_tag }}
+        {{ form.message }}
+        {{ form.message.errors }}
+      </div>
+
+      {{ form.honeypot }} {% endcomment %}
+
+      <form method="post" action="{% url 'contact_form' %}" class="contact-form" novalidate>
+      {% csrf_token %}
+      {{ form.honeypot }}
+
+      <div class="form-container">
+        <div class="form-left" aria-hidden="false">
+          <label for="{{ form.name.id_for_label }}"><strong>Име и фамилия</strong></label>
+          {{ form.name }}
+          {% if form.name.errors %}<div class="field-error">{{ form.name.errors }}</div>{% endif %}
+
+          <label for="{{ form.email.id_for_label }}"><strong>E-mail</strong></label>
+          {{ form.email }}
+          {% if form.email.errors %}<div class="field-error">{{ form.email.errors }}</div>{% endif %}
+
+          <label for="{{ form.phone.id_for_label }}"><strong>Телефон</strong></label>
+          {{ form.phone }}
+          {% if form.phone.errors %}<div class="field-error">{{ form.phone.errors }}</div>{% endif %}
+
+          <label for="{{ form.service.id_for_label }}"><strong>Услуга</strong></label>
+          {{ form.service }}
+          {% if form.service.errors %}<div class="field-error">{{ form.service.errors }}</div>{% endif %}
+        </div>
+
+        <div class="form-right">
+          <label for="{{ form.message.id_for_label }}"><strong>Вашето Съобщение</strong></label>
+          {{ form.message }}
+          {% if form.message.errors %}<div class="field-error">{{ form.message.errors }}</div>{% endif %}
+        </div>
+      </div>
+
+        {% if form.recaptcha %}
+          <div class="recaptcha">
+            {{ form.recaptcha.errors }}
+            {{ form.recaptcha }}
+          </div>
+        {% endif %}
+        <div class="form-submit">
+                  <a href="{% url 'home' %}" class="logo-text">Bolnogledachi.bg</a>
+                    <button type="submit"></strong>Изпрати</strong></button>
+                </div>
+    </form>
+
+    {% if success %}
+      <p class="success-message">✅ Благодарим! Съобщението беше изпратено успешно.</p>
     {% endif %}
-    <div class="form-submit">
-              <a href="{% url 'home' %}" class="logo-text">Bolnogledachi.bg</a>
-                <button type="submit">Изпрати</button>
-            </div>
-</form>
 
     {% comment %} <form class="contact-form" method="post" action="{% url 'contact_form' %}">
                 {% csrf_token %}
@@ -358,6 +416,22 @@ button:hover {
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2935.352585720258!2d23.293039976216818!3d42.63268471783412!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa8384c4ba5309%3A0xa46e397e41c99e8f!2z0LIu0LcuINCa0LjQvdC-0YbQtdC90YLRitGA0LDQktC40YLQvtGI0LAsINGD0LsuIOKAnjIwNuKAnCAxMCwgMTQxNSDQodC-0YTQuNGP!5e0!3m2!1sbg!2sbg!4v1757594558757!5m2!1sbg!2sbg"
      width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 </div>
+
+<style>
+/* запази текущите ти стилове или копирай по-горния CSS — това е само пример */
+.alert { padding: 10px; border-radius:6px; margin-bottom:10px; }
+.alert.success { background:#e6ffed; color:#1a7f37; }
+.alert.error { background:#ffe6e6; color:#a60303; }
+.field-error { color:#a60303; font-size:0.9rem; margin-top:6px; }
+.contact-wrapper { display:flex; gap:30px; max-width:1200px; margin:40px auto; padding:0 16px; }
+.contact-form { background:#eef5fb; padding:18px; border-radius:10px; }
+.form-container { display:flex; gap:20px; }
+.form-left, .form-right { flex:1; display:flex; flex-direction:column; gap:12px; }
+@media (max-width:768px) {
+  .contact-wrapper { flex-direction:column; }
+  .form-container { flex-direction:column; }
+}
+</style>
 
 <script>
 console.log("My script loaded"); // виж в конзолата

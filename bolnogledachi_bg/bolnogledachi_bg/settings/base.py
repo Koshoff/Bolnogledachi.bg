@@ -110,3 +110,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AXES_FAILURE_LIMIT = 5  # колко неуспешни login опита да блокира
 AXES_COOLOFF_TIME = 1   # час(ове), колко време да е блокирано
+
+# Email settings (Purelymail)
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.purelymail.com'
+EMAIL_PORT = 587             # TLS порт
+EMAIL_USE_TLS = True         # използвай TLS (STARTTLS)
+EMAIL_USE_SSL = False        # не ползвай SSL
+EMAIL_HOST_USER = 'contact@bolnogledachi.bg'
+EMAIL_HOST_PASSWORD = 'Yotovconsulting9761bolnogledachi'  # паролата
+DEFAULT_FROM_EMAIL = 'Болногледачи.бг <contact@bolnogledachi.bg>'
+CONTACT_RECEIVER_EMAIL = 'contact@bolnogledachi.bg'
