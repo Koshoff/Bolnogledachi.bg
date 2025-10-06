@@ -22,8 +22,8 @@
     color: white;
   }
 
-    .hero-contact h1 {
-    font-size: 3rem;
+  .hero-contact h1 {
+    font-size: 4.06rem;
     font-family: 'Oswald', sans-serif;
     margin: 0;
     color: white;
@@ -46,11 +46,13 @@
     flex-direction: column;
     gap: 20px;
     flex: 2;
+    flex-wrap: wrap;
     background: #eef5fb;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   }
+
 
   .form-container {
     display: flex;
@@ -69,6 +71,8 @@
   .form-right textarea {
     min-height: 100%;
   }
+
+  
 
   /* Полета */
   .contact-form input,
@@ -91,7 +95,8 @@
 
   /* Бутон */
   .form-submit {
-    margin-top: 10px;
+    margin-top: 15px;
+    margin-left: -5rem;
     display: flex;
     justify-content: space-around;
   }
@@ -110,6 +115,37 @@
   .form-submit button:hover {
     background: #0056b3;
   }
+
+  .form-left, .form-right {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+.input-field, .textarea-field, select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+
+
+button {
+  padding: 12px 25px;
+  background: #2c7a7b;
+  border: none;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background: #225e5f;
+}
+
 
   /* Контактна информация вдясно */
   .contact-info {
@@ -131,12 +167,20 @@
 
   @media (max-width: 768px) {
 
+    .hero-contact h1 {
+    font-size: 2.5rem;
+    }
+
     /* Contact Wrapper */
     .contact-wrapper {
       display: flex;
-      flex-direction: column;
+      flex-direction: column !important;
       gap: 2rem;
       padding: 2rem 1rem;
+    }
+
+    .form-container {
+      flex-direction: column;
     }
 
     .contact-form {
@@ -168,6 +212,7 @@
     .form-submit {
       gap: 10px;
       display: flex;
+      margin: 0 !important;
       flex-direction: column;
       justify-content: center;
       align-items:center;
@@ -190,33 +235,8 @@
       font-size: 1rem;
       margin: 0.3rem 0;
     }
+    /* Google Maps */
 
-    /* About Grid */
-    .about-grid {
-      grid-template-columns: 1fr; /* само една колона */
-      gap: 2rem;
-      padding: 2rem 1rem;
-    }
-
-    .about-text {
-      padding: 0;
-      font-size: 1rem;
-      line-height: 1.6;
-      text-align: center;
-    }
-
-    .about-image {
-      order: -1; /* снимката да излиза преди текста */
-    }
-
-    .about-image img {
-      width: 100%;
-      max-height: 300px;
-      object-fit: cover;
-    }
-  }
-
-  @media (max-width: 768px) {
     .map {
       margin: 20px 10px;   /* по-малки външни разстояния */
       border-radius: 8px;  /* леко заобляне */
@@ -230,43 +250,10 @@
     }
   }
 
-
-  .contact-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.form-left, .form-right {
-  flex: 1;
-  min-width: 250px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.input-field, .textarea-field, select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 15px;
-}
-
-.form-submit {
-  margin-top: 15px;
-}
-
-button {
-  padding: 12px 25px;
-  background: #2c7a7b;
-  border: none;
-  color: #fff;
-  border-radius: 6px;
-  cursor: pointer;
-}
-button:hover {
-  background: #225e5f;
+@media (max-width: 480px) {
+  .hero-contact h1 {
+    font-size: 1.6rem;
+  }
 }
 </style>
 
@@ -311,10 +298,10 @@ button:hover {
         <div class="form-right">
             {{ form.message.errors }}
             {{ form.message }}
-            <div class="form-submit">
-                <button type="submit">Изпрати</button>
-            </div>
+            
+            
         </div>
+        
     </div>
 
     {% if form.recaptcha %}
@@ -323,6 +310,10 @@ button:hover {
         {{ form.recaptcha }}
       </div>
     {% endif %}
+    <div class="form-submit">
+              <a href="{% url 'home' %}" class="logo-text">Bolnogledachi.bg</a>
+                <button type="submit">Изпрати</button>
+            </div>
 </form>
 
     {% comment %} <form class="contact-form" method="post" action="{% url 'contact_form' %}">
@@ -346,6 +337,7 @@ button:hover {
                             <button type="submit">Изпрати</button>
                         </div>
                     </div>
+                    <a href="home.html" class="logo-text">Bolnogledachi.bg</a>
                     </div>
             </form> {% endcomment %}
 

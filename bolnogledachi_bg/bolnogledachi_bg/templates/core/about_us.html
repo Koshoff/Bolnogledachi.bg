@@ -8,6 +8,20 @@
 {% block content %}
 {% load static %}
 
+<style>
+    .about-hero {
+        display: flex;
+        align-items: center;
+        background: linear-gradient(rgba(207, 191, 191, 0.45), rgba(207, 191, 191, 0.45)), 
+                    url("{% static '/css/images/about_us_title_image_second.jpg' %}") no-repeat center center / cover;
+        background-position: 30% 30%;
+        color: white;
+        text-align: center;
+        padding: 3rem 1rem;
+         min-height: 70vh;
+    }  
+</style>
+
     <!-- Hero Section -->
     <section class="about-hero">
         <h1>Правим избора ви на болногледач лесен</h1>

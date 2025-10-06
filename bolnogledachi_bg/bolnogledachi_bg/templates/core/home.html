@@ -6,20 +6,21 @@
 {% load static %}
         
     <style>
-        .hero {
-  display: flex;
-  justify-content: flex-start;
-  align-items:center;
-  position: relative;
-  padding-left: 3rem;
-  background: 
-    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), /* тъмен overlay */
-    url("{% static '/css/images/closeup-support-hands.jpg' %}") no-repeat center center;
-  background-size: cover;
-  color: white;
-  text-align: center;
-  min-height: 70vh;
-}
+         .hero {
+            display: flex;
+            justify-content: flex-start;
+            align-items:center;
+            position: relative;
+            padding-left: 1rem;
+            background: 
+                        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                        url("{% static '/css/images/main_section_title_image.jpg' %}") no-repeat center center;
+            background-position: right;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            min-height: 70vh;
+        }
     </style>
 {% comment %} <body>
     <header class="header">
@@ -74,17 +75,17 @@
             <h2>Ние предлагаме</h2>
             <div class="service-grid">
                 <div class="service-item">
-                    <img src="{% static 'css/images/caregiver_helping.jpg' %}" alt="Болногледач почасово" class="service-image">
+                    <img src="{% static 'css/images/main_image_services_second.jpg' %}" alt="Болногледач почасово" class="service-image">
                     <h3>Болногледач почасово</h3>
                     <p>Гъвкава грижа според вашите нужди</p>
                 </div>
                 <div class="service-item">
-                    <img src="{% static 'css/images/caregiver-helping-old-woman-getting-up.jpg' %}" alt="Болногледач на пълно работно време" class="service-image">
+                    <img src="{% static 'css/images/main_image_services_first.jpg' %}" alt="Болногледач на пълно работно време" class="service-image">
                     <h3>Болногледач на пълно работно време</h3>
                     <p>Професионална грижа през целия работен ден</p>
                 </div>
                 <div class="service-item">
-                    <img src="{% static 'css/images/closeup-support-hands_2.jpg' %}" alt="Болногледач 24 часа" class="service-image">
+                    <img src="{% static 'css/images/main_image_services_third.jpg' %}" alt="Болногледач 24 часа" class="service-image">
                     <h3>Болногледач 24 часа</h3>
                     <p>Денонощна грижа и подкрепа</p>
                 </div>
