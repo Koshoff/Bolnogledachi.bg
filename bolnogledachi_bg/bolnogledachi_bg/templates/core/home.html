@@ -12,14 +12,20 @@
             align-items:center;
             position: relative;
             padding-left: 1rem;
-            background: 
-                        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+            background:  
                         url("{% static '/css/images/index_hero_image_compressed.webp' %}") no-repeat center center;
             background-position: right;
             background-size: cover;
             color: white;
             text-align: center;
             min-height: 70vh;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(174, 173, 173, 0.45); /* или лек градиент */
         }
     </style>
 {% comment %} <body>
@@ -71,7 +77,7 @@
             </div>
         </section>
 
-        <section class="services">
+        <section class="services" id="services">
             <h2>Ние предлагаме</h2>
             <div class="service-grid">
                 <div class="service-item">
