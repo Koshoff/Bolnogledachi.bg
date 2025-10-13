@@ -398,7 +398,7 @@ button:hover {
     <div class="contact-info">
         <h2>Ние сме до вас</h2>
         <p><strong>Работно време:</strong><br> Понеделник - Неделя 07:00 - 19:00</p>
-        <p>📞 +359 87 816 5083</p>
+        <p>📞 +359 87 8720988</p>
         <p>📧 contact@bolnogledachi.bg</p>
         <p>📍 гр. София, кв. Киноцентър, ул. 206 номер 10</p>
         <p><em>Срещи в офиса след предварително уговорен час.</em></p>
@@ -468,14 +468,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <script>
-  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+document.getElementById('contactForm').addEventListener('submit', async function (e) {
   e.preventDefault();
-
 
   const form = e.target;
 
   if (!form.checkValidity()) {
-    form.reportValidity(); // визуално показва грешките
+    form.reportValidity();
     return;
   }
 
@@ -490,7 +489,11 @@ document.addEventListener('DOMContentLoaded', () => {
       body: formData
     });
 
-    if (response.ok) {
+    // 👉 Тук четем JSON отговора
+    const data = await response.json();
+
+    if (response.ok && data.success) {
+      // 🟢 Успех
       container.classList.add('fade-out');
       setTimeout(() => {
         container.innerHTML = `
@@ -502,23 +505,26 @@ document.addEventListener('DOMContentLoaded', () => {
         container.classList.remove('fade-out');
         container.classList.add('fade-in');
       }, 600);
+
     } else {
-      showError(container);
+      // 🔴 Грешка от backend-а
+      const message = data.error || 'Възникна грешка. Моля, опитайте по-късно.';
+      showError(container, message);
     }
 
   } catch (err) {
     console.error(err);
-    showError(container);
+    showError(container, 'Няма връзка със сървъра. Опитайте пак.');
   }
 });
 
-function showError(container) {
+function showError(container, message) {
   container.classList.add('fade-out');
   setTimeout(() => {
     container.innerHTML = `
       <div class="thank-you-message error">
         <h2>Възникна грешка!</h2>
-        <p>Моля, опитайте отново по-късно.</p>
+        <p>${message}</p>
       </div>
     `;
     container.classList.remove('fade-out');
@@ -526,6 +532,7 @@ function showError(container) {
   }, 600);
 }
 </script>
+
 
 
 

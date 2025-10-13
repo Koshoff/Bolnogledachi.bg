@@ -2,6 +2,8 @@
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.core.mail import send_mail
+from django.http import JsonResponse
+
 # from ratelimit.decorators import ratelimit
 import bleach
 from .forms import ContactForm
@@ -64,16 +66,24 @@ def contact_view(request):
                     fail_silently=False,
                 )
             except Exception:
-                messages.error(request, "Възникна проблем при изпращането. Моля опитайте по-късно.")
-                return render(request, 'core/contact_form.html', {'form': form, 'sent': False})
+                # Грешка при изпращане на имейл
+                return JsonResponse({
+                    'error': 'Възникна проблем при изпращането. Моля опитайте по-късно.'
+                }, status=500)
 
-            messages.success(request, "Благодарим! Вашето съобщение е изпратено успешно.")
-            return redirect('contact_form')
+            # Всичко е наред → връщаме success
+            return JsonResponse({'success': True})
+
         else:
-            messages.error(request, "Моля, коригирайте грешките във формата.")
-    else:
-        form = ContactForm()
+            # Формата е невалидна
+            errors = {field: form.errors[field][0] for field in form.errors}
+            return JsonResponse({
+                'error': 'Моля, коригирайте грешките във формата.',
+                'details': errors
+            }, status=400)
 
+    # GET заявка → зареждаме HTML шаблона
+    form = ContactForm()
     return render(request, 'core/contact_form.html', {'form': form})
 
 

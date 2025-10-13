@@ -14,7 +14,13 @@
     <link rel="stylesheet" href="{% static 'css/contact_us.css' %}">
     <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
     <link rel="stylesheet" href="{% static 'css/about_us.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cookies.css' %}">
+    <link rel="stylesheet" href="{% static 'css/privacy_policy.css' %}">
 </head>
+
+<style>
+
+</style>
 <body>
     {% include "fragments/header.html" %}
     
@@ -24,43 +30,16 @@
     
     {% include "fragments/footer.html" %}
 
-    <!-- 🍪 -->
-    <div id="cookie-banner" style="
-        position: fixed;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #ffffff;
-        border-radius: 10px;
-        box-shadow: 0 4px 25px rgba(0,0,0,0.15);
-        padding: 18px 22px;
-        z-index: 9999;
-        display: none;
-        max-width: 480px;
-        font-family: 'Arial', sans-serif;
-        text-align: left;
-    ">
-        <p style="margin: 0; color: #333; font-size: 15px; line-height: 1.4;">
-            🍪 Използваме бисквитки, за да подобрим работата на сайта и вашето изживяване.
-            <a href="{% static 'docs/politika-za-poveritelnost.pdf' %}" style="color: #007AFF; text-decoration: none; font-weight: 500;">
-                Политика за поверителност и бисквитки
-            </a>.
-        </p>
-        
-        <div style="margin-top: 12px; text-align: right;">
-            <button id="accept-cookies" style="
-                background-color: #007AFF;
-                color: white;
-                border: none;
-                padding: 8px 18px;
-                border-radius: 8px;
-                cursor: pointer;
-                font-weight: 600;
-                font-size: 14px;
-                transition: background-color 0.2s ease;
-            ">Приемам</button>
+    <!-- 🍪 Cookie Banner -->
+        <div class="cookie-banner" id="cookie-banner">
+            <p>
+                🍪 Използваме бисквитки, за да подобрим работата на сайта и вашето изживяване.
+                <a href="{% url 'privacy_policy' %}" target="_blank">Политика за поверителност и бисквитки</a>.
+            </p>
+            <div class="cookie-actions">
+                <button id="accept-cookies">Приемам</button>
+            </div>
         </div>
-    </div>
 
     <script>
     document.addEventListener("DOMContentLoaded", function() {
