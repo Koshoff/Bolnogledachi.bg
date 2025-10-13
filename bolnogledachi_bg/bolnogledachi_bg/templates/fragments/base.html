@@ -24,7 +24,7 @@
     
     {% include "fragments/footer.html" %}
 
-    <!-- ✅ Cookie Consent Banner -->
+    <!-- 🍪 -->
     <div id="cookie-banner" style="
         position: fixed;
         bottom: 20px;
@@ -42,10 +42,11 @@
     ">
         <p style="margin: 0; color: #333; font-size: 15px; line-height: 1.4;">
             🍪 Използваме бисквитки, за да подобрим работата на сайта и вашето изживяване.
-            <a href="{% url 'privacy_policy' %}" style="color: #007AFF; text-decoration: none; font-weight: 500;">
-                Научи повече
+            <a href="{% static 'docs/politika-za-poveritelnost.pdf' %}" style="color: #007AFF; text-decoration: none; font-weight: 500;">
+                Политика за поверителност и бисквитки
             </a>.
         </p>
+        
         <div style="margin-top: 12px; text-align: right;">
             <button id="accept-cookies" style="
                 background-color: #007AFF;
