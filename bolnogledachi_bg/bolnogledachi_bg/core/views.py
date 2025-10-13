@@ -79,3 +79,7 @@ def contact_view(request):
 
 def about_us(request):
     return render(request, 'core/about_us.html')
+
+
+def privacy_policy(request):
+    return render(request, 'core/privacy_policy.html')
