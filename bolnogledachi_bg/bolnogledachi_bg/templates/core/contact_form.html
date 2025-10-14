@@ -418,53 +418,9 @@ button:hover {
   .alert.error { background:#ffe6e6; color:#a60303; }
   .field-error { color:#a60303; font-size:0.9rem; margin-top:6px; }
 
-  @media (max-width:768px) {
-    .contact-wrapper { flex-direction:column; }
-    .form-container { flex-direction:column; }
-  }
+  
 </style>
 
-<script>
-console.log("My script loaded"); // виж в конзолата
-
-const navContainer = document.querySelector('.nav-container');
-
-navContainer.addEventListener('click', (e) => {
-    const clickedLink = e.target.closest('.nav-link');
-    if (!clickedLink) return;
-
-    const currentActive = navContainer.querySelector('.nav-link.active');
-    if (currentActive) currentActive.classList.remove('active');
-
-    clickedLink.classList.add('active');
-    console.log("Active added to:", clickedLink.textContent.trim());
-});
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('.nav-link');
-    const currentPath = window.location.pathname.split("/").pop();
-
-    navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (linkPath === currentPath) {
-            link.classList.add('active'); // рамките остават видими
-        }
-    });
-});
-
-</script>
-
-<script>
-    const burger = document.querySelector(".burger");
-    const nav = document.querySelector(".nav-container");
-
-    burger.addEventListener("click", () => {
-        nav.classList.toggle("active");
-        burger.classList.toggle("open");
-    });
-</script>
 
 
 <script>
@@ -481,6 +437,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
   const formData = new FormData(form);
   const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
   const container = document.getElementById('contact-form-container');
+  const originalHTML = container.innerHTML; // 💾 Запазваме оригиналната форма
 
   try {
     const response = await fetch(form.action, {
@@ -489,11 +446,9 @@ document.getElementById('contactForm').addEventListener('submit', async function
       body: formData
     });
 
-    // 👉 Тук четем JSON отговора
     const data = await response.json();
 
     if (response.ok && data.success) {
-      // 🟢 Успех
       container.classList.add('fade-out');
       setTimeout(() => {
         container.innerHTML = `
@@ -507,18 +462,17 @@ document.getElementById('contactForm').addEventListener('submit', async function
       }, 600);
 
     } else {
-      // 🔴 Грешка от backend-а
       const message = data.error || 'Възникна грешка. Моля, опитайте по-късно.';
-      showError(container, message);
+      showError(container, message, originalHTML);
     }
 
   } catch (err) {
     console.error(err);
-    showError(container, 'Няма връзка със сървъра. Опитайте пак.');
+    showError(container, 'Няма връзка със сървъра. Опитайте пак.', originalHTML);
   }
 });
 
-function showError(container, message) {
+function showError(container, message, originalHTML) {
   container.classList.add('fade-out');
   setTimeout(() => {
     container.innerHTML = `
@@ -529,6 +483,16 @@ function showError(container, message) {
     `;
     container.classList.remove('fade-out');
     container.classList.add('fade-in');
+
+    // ⏳ След 4 секунди върни формата обратно
+    setTimeout(() => {
+      container.classList.add('fade-out');
+      setTimeout(() => {
+        container.innerHTML = originalHTML;
+        container.classList.remove('fade-out');
+        container.classList.add('fade-in');
+      }, 600);
+    }, 4000); // <- можеш да промениш времето (в милисекунди)
   }, 600);
 }
 </script>

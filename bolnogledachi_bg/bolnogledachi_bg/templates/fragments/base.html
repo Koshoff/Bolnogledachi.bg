@@ -8,8 +8,10 @@
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script>
-<!-- End Google Tag Manager -->
+    })(window,document,'script','dataLayer','GTM-MQB3SQLQ');</script>
+    <!-- End Google Tag Manager -->
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Болногледачи.бг{% endblock %}</title>
@@ -63,9 +65,53 @@
         });
     });
     </script>
+    <script>
+console.log("My script loaded"); // виж в конзолата
+
+const navContainer = document.querySelector('.nav-container');
+
+navContainer.addEventListener('click', (e) => {
+    const clickedLink = e.target.closest('.nav-link');
+    if (!clickedLink) return;
+
+    const currentActive = navContainer.querySelector('.nav-link.active');
+    if (currentActive) currentActive.classList.remove('active');
+
+    clickedLink.classList.add('active');
+    console.log("Active added to:", clickedLink.textContent.trim());
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const currentPath = window.location.pathname.split("/").pop();
+
+    navLinks.forEach(link => {
+        const linkPath = link.getAttribute('href');
+        if (linkPath === currentPath) {
+            link.classList.add('active'); // рамките остават видими
+        }
+    });
+});
+
+</script>
+
+<script>
+    const burger = document.querySelector(".burger");
+    const nav = document.querySelector(".nav-container");
+
+    burger.addEventListener("click", () => {
+        nav.classList.toggle("active");
+        burger.classList.toggle("open");
+    });
+    </script>
 </body>
+
+
+
 <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQB3SQLQ"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 </html>

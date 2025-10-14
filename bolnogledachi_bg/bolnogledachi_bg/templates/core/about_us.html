@@ -76,29 +76,5 @@
         </div>
     </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('.nav-link');
-    const currentPath = window.location.pathname.split("/").pop();
-
-    navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (linkPath === currentPath) {
-            link.classList.add('active'); // рамките остават видими
-        }
-    });
-});
-
-</script>
-
-<script>
-    const burger = document.querySelector(".burger");
-    const nav = document.querySelector(".nav-container");
-
-    burger.addEventListener("click", () => {
-        nav.classList.toggle("active");
-        burger.classList.toggle("open");
-    });
-</script>
 
 {% endblock %}

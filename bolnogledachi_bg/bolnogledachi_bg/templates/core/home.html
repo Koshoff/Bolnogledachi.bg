@@ -235,46 +235,6 @@
 
 
 
-<script>
-console.log("My script loaded"); // виж в конзолата
 
-const navContainer = document.querySelector('.nav-container');
-
-navContainer.addEventListener('click', (e) => {
-    const clickedLink = e.target.closest('.nav-link');
-    if (!clickedLink) return;
-
-    const currentActive = navContainer.querySelector('.nav-link.active');
-    if (currentActive) currentActive.classList.remove('active');
-
-    clickedLink.classList.add('active');
-    console.log("Active added to:", clickedLink.textContent.trim());
-});
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('.nav-link');
-    const currentPath = window.location.pathname.split("/").pop();
-
-    navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (linkPath === currentPath) {
-            link.classList.add('active'); // рамките остават видими
-        }
-    });
-});
-
-</script>
-
-<script>
-    const burger = document.querySelector(".burger");
-    const nav = document.querySelector(".nav-container");
-
-    burger.addEventListener("click", () => {
-        nav.classList.toggle("active");
-        burger.classList.toggle("open");
-    });
-</script>
 
 {% endblock %}
