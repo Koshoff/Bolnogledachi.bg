@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>403 - Достъпът е отказан</title>
+  <link rel="stylesheet" href="{% static 'css/images/403.css' %}">
+</head>
+<body>
+  <div class="error-container">
+    <h1>403</h1>
+    <h2>Достъпът е отказан</h2>
+    <p>Нямате права за достъп до тази страница.<br>Моля, върнете се към началната страница.</p>
+    <a href="{% url 'home' %}" class="home-btn">Начало</a>
+  </div>
+</body>
+</html>
