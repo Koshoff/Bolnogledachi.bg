@@ -1,0 +1,15 @@
+{% extends "fragments/base.html" %}
+
+{% block title %}Грешка 500 | Болногледачи.бг{% endblock %}
+
+{% block content %}
+{% load static %}
+
+<div class="error-container">
+    <h1>500</h1>
+    <h2>Възникна вътрешна грешка в сървъра</h2>
+    <p>Нашият екип е уведомен и ще реши проблема възможно най-скоро.<br>
+    Моля, опитайте отново по-късно.</p>
+    <a href="{% url 'home' %}" class="home-btn">⬅ Върни се на началната страница</a>
+</div>
+{% endblock %}

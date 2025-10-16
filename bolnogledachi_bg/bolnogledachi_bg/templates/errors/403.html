@@ -1,0 +1,13 @@
+{% extends "fragments/base.html" %}
+{% load static %}
+
+{% block title %}403 - Достъпът е отказан | Болногледачи.бг{% endblock %}
+
+{% block content %}
+<div class="error-container">
+  <h1>403</h1>
+  <h2>Достъпът е отказан</h2>
+  <p>Нямате права за достъп до тази страница.<br>Моля, върнете се към началната страница.</p>
+  <a href="{% url 'home' %}" class="home-btn">⬅ Върни се на началната страница</a>
+</div>
+{% endblock %}

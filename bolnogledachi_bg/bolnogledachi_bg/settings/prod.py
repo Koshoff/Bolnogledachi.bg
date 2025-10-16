@@ -33,3 +33,4 @@ CACHES = {
 # Production commands
 # python3 manage.py runserver --settings=bolnogledachi_bg.settings.prod
 # djbolnoprod
+# bolno_deploy

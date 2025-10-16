@@ -1,0 +1,13 @@
+{% extends "fragments/base.html" %}
+{% load static %}
+
+{% block title %}404 - Страницата не е открита | Болногледачи.бг{% endblock %}
+
+{% block content %}
+<div class="error-container">
+  <h1>404</h1>
+  <h2>Страницата не е намерена</h2>
+  <p>Изглежда, че страницата, която търсите, не съществува или е преместена.</p>
+  <a href="{% url 'home' %}" class="home-btn">⬅ Върни се на началната страница</a>
+</div>
+{% endblock %}

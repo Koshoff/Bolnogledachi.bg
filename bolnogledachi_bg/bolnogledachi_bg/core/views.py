@@ -9,6 +9,8 @@ import bleach
 from .forms import ContactForm
 from django.contrib import messages
 
+from django.conf.urls import handler403, handler404
+
 
 def home(request):
     return render(request, 'core/home.html')
@@ -93,3 +95,27 @@ def about_us(request):
 
 def privacy_policy(request):
     return render(request, 'core/privacy_policy.html')
+
+# Error Handling 404 & 403 & 500
+def custom_404(request, exception):
+    return render(
+        request,
+        'errors/404.html',
+        status=404
+    )
+
+
+def custom_403(request, exception):
+    return render(
+        request,
+        'errors/403.html',
+        status=403
+    )
+
+
+def custom_500(request):
+    return render(
+        request,
+        'errors/500.html',
+        status=500
+    )
