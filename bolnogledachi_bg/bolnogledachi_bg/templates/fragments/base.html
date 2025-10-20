@@ -109,6 +109,18 @@ document.addEventListener('DOMContentLoaded', () => {
         burger.classList.toggle("open");
     });
     </script>
+
+
+<script>
+function trackContactClick() {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    'event': 'contact_click',
+    'button_text': 'Свържете се с нас'
+  });
+  console.log('✅ contact_click sent to dataLayer');
+}
+</script>
 </body>
 
 
