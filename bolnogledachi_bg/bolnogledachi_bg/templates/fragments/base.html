@@ -4,13 +4,7 @@
 <html lang="bg">
 <head>
     
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MQB3SQLQ');</script>
-    <!-- End Google Tag Manager -->
+    
 
 
     <meta charset="UTF-8">
@@ -19,15 +13,8 @@
     <link rel="icon" href="{% static '/css/images/mini_logo.png' %}" type="image/png">
 
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/contact_us.css' %}">
-    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
-    <link rel="stylesheet" href="{% static 'css/about_us.css' %}">
-    <link rel="stylesheet" href="{% static 'css/cookies.css' %}">
-    <link rel="stylesheet" href="{% static 'css/privacy_policy.css' %}">
-    <link rel="stylesheet" href="{% static 'css/errors/403.css' %}">
-    <link rel="stylesheet" href="{% static 'css/errors/404.css' %}">
+
 </head>
 
 <style>
@@ -44,89 +31,30 @@
 
     <!-- 🍪 Cookie Banner -->
         <div class="cookie-banner" id="cookie-banner">
-            <p>
-                🍪 Използваме бисквитки, за да подобрим работата на сайта и вашето изживяване.
-                <a href="{% url 'privacy_policy' %}" target="_blank">Политика за поверителност и бисквитки</a>.
-            </p>
-            <div class="cookie-actions">
-                <button id="accept-cookies">Приемам</button>
-            </div>
+        <p>
+            🍪 Използваме бисквитки, за да подобрим работата на сайта и вашето изживяване.<br>
+            <a href="{% url 'privacy_policy' %}" target="_blank">Политика за поверителност и бисквитки</a>.
+        </p>
+
+        <div class="cookie-options">
+            <label><input type="checkbox" id="functional-cookies" checked disabled> Строго необходими</label>
+            <label><input type="checkbox" id="analytics-cookies"> Статистически</label>
+            <label><input type="checkbox" id="marketing-cookies"> Маркетингови</label>
         </div>
 
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const banner = document.getElementById("cookie-banner");
-        const accepted = localStorage.getItem("cookies_accepted");
+        <div class="cookie-actions">
+            <button id="accept-selected">Приемам избраните</button>
+            <button id="reject-all" class="reject-btn">Отказвам</button>
+        </div>
+    </div>
 
-        if (!accepted) {
-            banner.style.display = "block";
-        }
-
-        document.getElementById("accept-cookies").addEventListener("click", function() {
-            localStorage.setItem("cookies_accepted", "true");
-            banner.style.display = "none";
-        });
-    });
-    </script>
-    <script>
-console.log("My script loaded"); // виж в конзолата
-
-const navContainer = document.querySelector('.nav-container');
-
-navContainer.addEventListener('click', (e) => {
-    const clickedLink = e.target.closest('.nav-link');
-    if (!clickedLink) return;
-
-    const currentActive = navContainer.querySelector('.nav-link.active');
-    if (currentActive) currentActive.classList.remove('active');
-
-    clickedLink.classList.add('active');
-    console.log("Active added to:", clickedLink.textContent.trim());
-});
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('.nav-link');
-    const currentPath = window.location.pathname.split("/").pop();
-
-    navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (linkPath === currentPath) {
-            link.classList.add('active'); // рамките остават видими
-        }
-    });
-});
-
-</script>
-
-<script>
-    const burger = document.querySelector(".burger");
-    const nav = document.querySelector(".nav-container");
-
-    burger.addEventListener("click", () => {
-        nav.classList.toggle("active");
-        burger.classList.toggle("open");
-    });
-    </script>
-
-
-<script>
-function trackContactClick() {
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    'event': 'contact_click',
-    'button_text': 'Свържете се с нас'
-  });
-  console.log('✅ contact_click sent to dataLayer');
-}
-</script>
+    <script src="{% static 'js/main.js' %}"></script>
 </body>
 
 
 
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQB3SQLQ"
+<noscript id="gtm-noscript" style="display:none"><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQB3SQLQ"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 </html>
