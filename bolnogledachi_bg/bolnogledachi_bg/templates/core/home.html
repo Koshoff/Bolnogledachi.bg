@@ -4,63 +4,37 @@
 
 {% block content %}
 {% load static %}
-        <link rel="preload" as="image" href="{% static '/css/images/index_hero_image_compressed.webp' %}">
-    <style>
-         .hero {
-            display: flex;
-            justify-content: flex-start;
-            align-items:center;
-            position: relative;
-            padding-left: 1rem;
-            background:  
-                        url("{% static '/css/images/index_hero_image_compressed.webp' %}") no-repeat center center;
-            background-position: right;
-            background-size: cover;
-            color: white;
-            text-align: center;
-            min-height: 70vh;
-        }
-
-        
-    </style>
+<link rel="preload" as="image" href="{% static '/css/images/index_hero_image_compressed.webp' %}">
+    
 {% comment %} <body>
     <header class="header">
         <a href="home.html" class="logo-text">Bolnogledachi.bg</a> <!--Създаване на фрагмент , за да избегнем повтарянето на код--> {% endcomment %}
 
 <section class="hero">
-    <div class="hero-container">
-        <div class="hero-content">
-            <h1>
-                Проверени болногледачи за град<br>
-                София и София област
-            </h1>
-        </div>
-         <div class="services-cta">
-                <a href="{% url 'contact_form' %}" class="cta-btn" onclick="trackContactClick()">Свържете се с нас</a>
-                <a href="tel:+359 87 8720988" class="phone-btn">📞 +359 87 8720988</a>
-            </div>
-    </div> 
+  <img 
+    src="{% static '/css/images/index_hero_image_compressed.webp' %}" 
+    alt="Болногледачи в София и София област" 
+    class="hero-img"
+    width="1920" height="1080"
+    loading="eager"
+    fetchpriority="high"
+  >
+
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1>
+        Проверени болногледачи за град<br>
+        София и София област
+      </h1>
+    </div>
+
+    <div class="services-cta">
+      <a href="{% url 'contact_form' %}" class="cta-btn" onclick="trackContactClick()">Свържете се с нас</a>
+      <a href="tel:+359 87 8720988" class="phone-btn">📞 +359 87 8720988</a>
+    </div>
+  </div>
 </section>
 
-        <!--
-        
-        <section class="quote-section">
-            <div class="quote-wrapper">
-                <div class="quote-image">
-                    <img src="/css/images/caring_hands.jpg" alt="Грижовни ръце">
-                </div>
-                <div class="quote-content">
-                    <blockquote>
-                        "За да бъдеш добър болногледач, трябва да имаш не само умения, но и сърце. Защото грижата е мост между професионализма и човечността."
-                    </blockquote>
-                    <cite>- Болногледачи.бг</cite>
-                </div>
-            </div>
-        </section>
-        -->
-
-        
-        
         <section class="intro">
             <div class="intro-content">
                     <h1>Специализирани болногледачи спрямо Вашите изисквания и нужди</h1>
@@ -207,20 +181,7 @@
             </div>
         </section>
 
-  <!-- <section class="testimonials">
-            <h2>Какво Казват Нашите Клиенти</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <p>"Грижата и вниманието, които получава майка ни, са изключителни. Не бихме могли да бъдем по-доволни от Болногледачи.бг"</p>
-                    <cite>- Мария С., София</cite>
-                </div>
-                <div class="testimonial-card">
-                    <p>"Професионални, загрижени и надеждни. Направиха този труден период много по-лесен за нашето семейство."</p>
-                    <cite>- Георги П., Пловдив</cite>
-                </div>
-            </div>
-        </section> -->
-        
+ 
         {% comment %} TO DO: {% endcomment %}
         <section class="cta-section" id="contact">
             <div class="cta-content">

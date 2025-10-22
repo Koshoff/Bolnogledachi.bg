@@ -8,23 +8,21 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet" href="{% static '/css/images/about_us_hero_image_compressed.webp' %}">
-<style>
-    .about-hero {
-        display: flex;
-        align-items: center;
-        background: linear-gradient(rgba(207, 191, 191, 0.45), rgba(207, 191, 191, 0.45)), 
-                    url("{% static '/css/images/about_us_hero_image_compressed.webp' %}") no-repeat center center / cover;
-        background-position: 30% 60%;
-        color: white;
-        text-align: center;
-        padding: 3rem 1rem;
-         min-height: 60vh;
-    }  
-</style>
+
 
     <!-- Hero Section -->
     <section class="about-hero">
-        <h1>Правим избора ви на болногледач лесен</h1>
+        <img 
+            src="{% static '/css/images/about_us_hero_image_compressed.webp' %}" 
+            alt="Екип от болногледачи" 
+            class="hero-img"
+            width="1920" height="1080"
+            loading="eager"
+            fetchpriority="high"
+        >
+        <div class="hero-content">
+            <h1>Правим избора ви на болногледач лесен</h1>
+        </div>
     </section>
 
     <!-- About Us Section -->
