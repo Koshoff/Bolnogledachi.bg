@@ -1,14 +1,20 @@
 {% load static %} 
 
 <header class="header">
+    
     <div class="logo-and-contacts">
-        <a href="{% url 'home' %}" class="logo-text">
-            Bolnogledachi.bg</a>
+        <a href="{% url 'home' %}" class="logo">
+        <img 
+            src="{% static '/css/images/logo_finale.webp' %}" 
+            alt="Bolnogledachi.bg лого"
+            class="logo-img"
+            loading="eager"
+        >
+        </a> 
         <div class="contact-info-before-header">
             <p>📞 +359 87 8720988</p>
             <p>📧 contact@bolnogledachi.bg</p>
-        </div>
-         
+        </div>   
     </div> <!--Създаване на фрагмент , за да избегнем повтарянето на код-->
 
         <button class="burger" aria-label="Toggle menu">
@@ -17,6 +23,9 @@
         <span></span>
         
         </button>
+
+        
+
         <nav class="nav-container">
             <a href="{% url 'home' %}" class="nav-link">
                 <span></span><span></span><span></span><span></span>
