@@ -11,7 +11,7 @@
     <meta name="google-site-verification" content="TzyFZXdkB84t92WwYw5h4DXpXYNNvpU9j_7FXoHS6U8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Болногледачи.бг{% endblock %}</title>
-    <link rel="icon" href="{% static '/css/images/mini_logo.png' %}" type="image/png">
+    <link rel="icon" sizes="" href="{% static '/css/images/mini_logo1.png' %}" type="image/png">
 
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/errors/404.css' %}">
@@ -51,6 +51,15 @@
     </div>
 
     <script src="{% static 'js/main.js' %}"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10871794868"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'AW-10871794868');
+    </script>
 </body>
 
 
