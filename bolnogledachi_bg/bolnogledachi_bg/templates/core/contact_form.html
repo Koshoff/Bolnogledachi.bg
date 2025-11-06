@@ -132,6 +132,10 @@
 
 /* CONTACT INFO BOX */
 .contact-info {
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  text-align:center;
   flex: 1 1 35%;
   background: var(--light-blue);
   padding: 35px;
@@ -141,15 +145,23 @@
 }
 
 .contact-info h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: var(--text-dark);
   margin-bottom: 1rem;
 }
 
 .contact-info p {
-  color: #555;
-  font-size: 1rem;
+  color: var(--text-dark);
+  font-size: 1.3rem;
   margin: 0.5rem 0;
+}
+
+.logo-img-contact {
+    width: clamp(180px, 14vw, 350px);
+    height: auto;
+    margin: 0;
+    object-fit: contain;
+    display: block;
 }
 
 /* MAP */
@@ -304,7 +316,12 @@
       </div>
 
       <div class="form-submit">
-        <a href="{% url 'home' %}" class="logo-text">Bolnogledachi.bg</a>
+        <img 
+            src="{% static '/css/images/logo_finale.webp' %}" 
+            alt="Bolnogledachi.bg лого"
+            class="logo-img-contact"
+            loading="eager"
+        >
         <button type="submit"><strong>Изпрати</strong></button>
       </div>
     </form>
